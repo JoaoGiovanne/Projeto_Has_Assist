@@ -24,8 +24,21 @@ public class EquipamentoController {
         return repository.save(body);
     }
 
-    @GetMapping
-    public List<Equipamento> listar(@RequestBody Equipamento id){
-        return repository.findById(id);
+    @GetMapping("/{id}")
+    public Equipamento buscarPorId(@PathVariable Long id) {
+        var existe = repository.findById(id);
+        if (existe.isEmpty()) {
+            return null;
+        }
+        return existe.get();
+    }
+    @PutMapping("/{id}")
+    public Equipamento AtualizarPorId (@PathVariable Long id, @RequestBody Equipamento body){
+        var existe = repository.findById(id);
+        if(existe.isEmpty()) {
+            return null;
+        }
+        var atualizado = repository.save(body);
+        return atualizado;
     }
 }

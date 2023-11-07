@@ -15,10 +15,10 @@ public class EquipamentoController {
     @Autowired
     private EquipamentoRepository repository;
 
-    @GetMapping
-    public List<Equipamento> listarTodos(){
+    @GetMapping   public List<Equipamento> listarTodos(){
         return repository.findAll();
     }
+
     @PostMapping
     public Equipamento inserir(@RequestBody Equipamento body){
         return repository.save(body);
